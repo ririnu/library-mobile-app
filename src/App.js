@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Registration from './components/Registration';
 import About from './components/About';
+import UserList from './UserList';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <div className="navbar-nav" style={{display:'flex', flexDirection:'row', gap:'20px'}}>
           <Link className="nav-link" to="/">Home</Link>
           <Link className="nav-link" to="/registration">Register</Link>
+          <Link className="nav-link" to="/users">Users</Link>
           <Link className="nav-link" to="/about">About</Link>
         </div>
       </nav>
@@ -19,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/users" element={<UserList />} />
         <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
