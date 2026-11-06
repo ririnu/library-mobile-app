@@ -25,14 +25,19 @@ function Registration() {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Name" className="form-control mb-2"/>
-        <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Email" className="form-control mb-2"/>
-        <input type="text" value={phone} onChange={(e)=>setPhone(e.target.value)} placeholder="Phone" className="form-control mb-2"/>
-        <button type="submit" className="btn btn-success">Submit</button>
-      </form>
+    <div className="container mt-4">
+      <div className="card shadow p-4 mx-auto" style={{maxWidth: "500px"}}>
+        <h2 className="text-center mb-3">Register</h2>
+        <form onSubmit={handleSubmit}>
+          <label>Name</label>
+          <input type="text" value={name} onChange={(e)=>setName(e.target.value)} placeholder="Enter Name" className="form-control mb-3"/>
+          <label>Email</label>
+          <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Enter Email" className="form-control mb-3"/>
+          <label>Phone</label>
+          <input type="text" value={phone} onChange={(e)=>setPhone(e.target.value)} placeholder="Enter 10 digit Phone" className="form-control mb-3"/>
+          <button type="submit" className="btn btn-success w-100">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }

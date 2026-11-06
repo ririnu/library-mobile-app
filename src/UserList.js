@@ -65,11 +65,11 @@ function UserList() {
   );
 
   return (
-    <div className="container mt-5">
-      <h2>Registered Users</h2>
+    <div className="container mt-4">
+      <h2 className="text-center mb-3">Registered Users</h2>
 
       {editingUser && (
-        <div className="card p-3 mb-4 bg-light">
+        <div className="card p-3 mb-4 bg-light shadow-sm">
           <h4>Edit User</h4>
           <form onSubmit={handleUpdate}>
             <input value={name} onChange={(e)=>setName(e.target.value)} className="form-control mb-2" placeholder="Name" />
@@ -85,32 +85,39 @@ function UserList() {
         type="text" 
         placeholder="Search by name" 
         className="form-control mb-3"
+        value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <table className="table table-bordered table-hover table-striped">
-        <thead>
-          <tr>
-            <th onClick={() => sortBy("name")}>Name ↕️</th>
-            <th onClick={() => sortBy("email")}>Email ↕️</th>
-            <th>Phone</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map(user => (
-            <tr key={user.id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
-              <td>
-                <button className="btn btn-primary btn-sm me-2" onClick={()=>handleEdit(user)}>Edit</button>
-                <button className="btn btn-danger btn-sm" onClick={()=>handleDelete(user.id)}>Delete</button>
-              </td>
+      {/* ITHU THAN FIX DA - table-responsive POTTA MOBILE LA NEET AH VARUM */}
+      <div className="table-responsive shadow-sm rounded">
+        <table className="table table-bordered table-hover table-striped align-middle mb-0">
+          <thead className="table-dark">
+            <tr>
+              <th onClick={() => sortBy("name")} style={{cursor: "pointer", whiteSpace: "nowrap"}}>Name ↕️</th>
+              <th onClick={() => sortBy("email")} style={{cursor: "pointer", whiteSpace: "nowrap"}}>Email ↕️</th>
+              <th style={{whiteSpace: "nowrap"}}>Phone</th>
+              <th style={{whiteSpace: "nowrap"}}>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredUsers.map(user => (
+              <tr key={user.id}>
+                <td style={{whiteSpace: "nowrap"}}>{user.name}</td>
+                <td style={{wordBreak: "break-all"}}>{user.email}</td>
+                <td style={{whiteSpace: "nowrap"}}>{user.phone}</td>
+                <td>
+                  <div className="d-flex gap-2">
+                    <button className="btn btn-primary btn-sm" onClick={()=>handleEdit(user)}>Edit</button>
+                    <button className="btn btn-danger btn-sm" onClick={()=>handleDelete(user.id)}>Delete</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {filteredUsers.length === 0 && <p className="text-center mt-3 text-muted">No users found</p>}
     </div>
   );
 }
